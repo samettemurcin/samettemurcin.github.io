@@ -5,8 +5,9 @@
 }
 
 html {
+  font-size: 16px;
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -20,9 +21,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (max-width: 900px) {
+p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
   html {
-    scroll-padding-top: 132px;
+    scroll-padding-top: 80px;
   }
 }
 

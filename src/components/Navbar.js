@@ -1,58 +1,91 @@
-import { Link, NavLink } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { FaBars } from 'react-icons/fa';
+import { IoClose } from 'react-icons/io5';
 import styles from './Navbar.module.css';
 
+const navItems = [
+  { label: 'About', to: '/#about' },
+  { label: 'Projects', to: '/projects' },
+];
+
+function isNavItemActive(to, location) {
+  if (to === '/projects') {
+    return location.pathname === '/projects';
+  }
+  if (to.startsWith('/#')) {
+    const id = to.slice(2);
+    return location.pathname === '/' && location.hash === `#${id}`;
+  }
+  return false;
+}
+
 function Navbar() {
+  const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+
+  useEffect(() => {
+    closeMenu();
+  }, [location.pathname, location.hash, closeMenu]);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [menuOpen]);
+
+  const linkClass = (to) => {
+    const active = isNavItemActive(to, location);
+    return active ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink;
+  };
+
   return (
     <header className={styles.header}>
-      <div className={styles.inner}>
-        <Link to="/" className={styles.logoLink} aria-label="Samet Temurcin, home">
-          <span className={styles.logoMark}>ST</span>
-          <span className={styles.logoName}>Samet Temurcin</span>
+      <div className={styles.bar}>
+        <Link to="/" className={styles.logo} onClick={closeMenu}>
+          Samet Temurcin
         </Link>
 
-        <nav className={styles.nav} aria-label="Primary">
+        <button
+          type="button"
+          className={styles.menuToggle}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          {menuOpen ? <IoClose size={22} /> : <FaBars size={20} />}
+        </button>
+
+        <nav
+          className={menuOpen ? `${styles.nav} ${styles.navOpen}` : styles.nav}
+          aria-label="Primary"
+        >
           <ul className={styles.navList}>
+            {navItems.map(({ label, to }) => (
+              <li key={to}>
+                <Link to={to} className={linkClass(to)} onClick={closeMenu}>
+                  {label}
+                </Link>
+              </li>
+            ))}
             <li>
-              <Link to="/#about" className={styles.navLink}>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/#experience" className={styles.navLink}>
-                Experience
-              </Link>
-            </li>
-            <li>
-              <NavLink
-                to="/projects"
-                className={({ isActive }) =>
-                  isActive ? `${styles.navLink} ${styles.navLinkActive}` : styles.navLink
-                }
+              <a
+                href="/Samet_Temurcin_Resume.pdf"
+                className={styles.navLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
               >
-                Projects
-              </NavLink>
-            </li>
-            <li>
-              <Link to="/#skills" className={styles.navLink}>
-                Skills
-              </Link>
-            </li>
-            <li>
-              <Link to="/#contact" className={styles.navLink}>
-                Contact
-              </Link>
+                Resume
+              </a>
             </li>
           </ul>
         </nav>
-
-        <a
-          href="/resume.pdf"
-          className={styles.resumeBtn}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Resume
-        </a>
       </div>
     </header>
   );

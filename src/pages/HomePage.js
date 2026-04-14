@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Hero from '../components/Hero';
 import About from '../components/About';
 import Experience from '../components/Experience';
+import Education from '../components/Education';
+import Volunteering from '../components/Volunteering';
 import Skills from '../components/Skills';
-import Contact from '../components/Contact';
 
 function HomePage() {
   const location = useLocation();
@@ -20,11 +20,11 @@ function HomePage() {
 
   return (
     <>
-      <Hero />
       <About />
       <Experience />
+      <Education />
+      <Volunteering />
       <Skills />
-      <Contact />
     </>
   );
 }

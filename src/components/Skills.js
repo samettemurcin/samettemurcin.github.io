@@ -1,21 +1,34 @@
 import styles from './Skills.module.css';
 
-const skillGroups = [
+const lines = [
   {
-    label: 'Languages & core',
-    items: ['Python', 'SQL', 'Kotlin', 'R'],
+    category: 'Programming & Databases',
+    skills:
+      'Python, pandas, NumPy, scikit-learn, PyTorch, TensorFlow, SQL (MySQL, PostgreSQL), MongoDB, Neo4j, Kotlin',
   },
   {
-    label: 'Data & ML',
-    items: ['pandas', 'NumPy', 'Scikit-learn', 'PyTorch', 'ETL pipelines', 'Time series'],
+    category: 'Data Engineering',
+    skills:
+      'ETL Pipelines, Data Ingestion, Data Validation, Data Quality, Database Design, Data Modeling, Data Warehousing, Snowflake',
   },
   {
-    label: 'Visualization & apps',
-    items: ['Tableau', 'Power BI', 'Streamlit', 'Gradio'],
+    category: 'Machine Learning & Analytics',
+    skills:
+      'Predictive Modeling, Classification, Clustering (K-means), Statistical Analysis, A/B Testing, ARIMA, Data Mining',
   },
   {
-    label: 'Engineering',
-    items: ['OpenCV', 'Android SDK', 'Unit testing', 'Git'],
+    category: 'Visualization & BI',
+    skills: 'Tableau, Power BI, Matplotlib, Seaborn, Dashboard Development',
+  },
+  {
+    category: 'Tools & Platforms',
+    skills:
+      'Git, Jupyter Notebook, Excel (Advanced), OpenCV, Gradio, ML Kit, Jetpack Compose, Google Colab, Google Cloud',
+  },
+  {
+    category: 'Professional',
+    skills:
+      'Problem Solving, Critical Thinking, Team Collaboration, Cross-functional Communication, Documentation, Iterative Delivery',
   },
 ];
 
@@ -26,18 +39,13 @@ function Skills() {
         <h2 id="skills-heading" className={styles.heading}>
           Skills
         </h2>
-        <div className={styles.groups}>
-          {skillGroups.map((group) => (
-            <div key={group.label} className={styles.group}>
-              <h3 className={styles.groupLabel}>{group.label}</h3>
-              <ul className={styles.pills} aria-label={group.label}>
-                {group.items.map((item) => (
-                  <li key={item} className={styles.pill}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <div className={styles.list}>
+          {lines.map(({ category, skills }) => (
+            <p key={category} className={styles.line}>
+              <span className={styles.category}>{category}</span>
+              <span className={styles.colon}>: </span>
+              <span className={styles.skills}>{skills}</span>
+            </p>
           ))}
         </div>
       </div>

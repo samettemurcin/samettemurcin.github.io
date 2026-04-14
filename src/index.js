@@ -5,10 +5,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Match GitHub Pages subpath in production (package.json homepage). On localhost,
+// .env.development sets PUBLIC_URL=/ so scripts load from /static/... not /Portfolio/static/...
+const publicUrl = process.env.PUBLIC_URL || '';
+const routerBasename =
+  publicUrl && publicUrl !== '/' ? publicUrl.replace(/\/$/, '') : undefined;
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <BrowserRouter
+      basename={routerBasename}
+      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+    >
       <App />
     </BrowserRouter>
   </React.StrictMode>

@@ -1,46 +1,103 @@
 .footer {
-  border-top: 1px solid #e1e4e8;
   background: #f4f5f7;
-  padding: 1.5rem 1.5rem;
+  border-top: 1px solid #e1e4e8;
+  padding: 1.5rem 1.5rem 2rem;
 }
 
 .inner {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
-  max-width: 1100px;
+  gap: 1.5rem;
+  max-width: 860px;
   margin: 0 auto;
 }
 
-.copy {
-  margin: 0;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: #1a1a2e;
-  opacity: 0.75;
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
 }
 
-.nav {
+.name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: #1a1a2e;
+}
+
+.title {
+  margin: 0 0 0.5rem;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+.socialRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.socialLink:hover {
+  opacity: 0.85;
+}
+
+.socialLink:focus-visible {
+  outline: 2px solid #0052cc;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.socialGithub {
+  color: #000000;
+}
+
+.socialLinkedin {
+  color: #0077b5;
+}
+
+.socialGmail {
+  color: #ea4335;
+}
+
+.socialIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.right {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 1rem 1.5rem;
 }
 
 .footerLink {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   letter-spacing: -0.01em;
-  color: #0052cc;
+  color: #6b7280;
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .footerLink:hover {
-  color: #0041a3;
-  border-bottom-color: rgba(0, 82, 204, 0.35);
+  color: #0052cc;
 }
 
 .footerLink:focus-visible {
@@ -52,7 +109,14 @@
 @media (min-width: 640px) {
   .inner {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .right {
+    flex-shrink: 0;
+    justify-content: flex-end;
+    padding-top: 0.125rem;
   }
 }
