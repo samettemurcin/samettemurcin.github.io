@@ -1,29 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Match GitHub Pages subpath in production (package.json homepage). On localhost,
-// .env.development sets PUBLIC_URL=/ so scripts load from /static/... not /Portfolio/static/...
-const publicUrl = process.env.PUBLIC_URL || '';
-const routerBasename =
-  publicUrl && publicUrl !== '/' ? publicUrl.replace(/\/$/, '') : undefined;
+// On localhost, .env.development sets PUBLIC_URL=/ so scripts load from /static/...
+// not /Portfolio/static/... (see package.json homepage for production asset paths).
+// HashRouter uses #/ routes so GitHub Pages serves index.html for all paths.
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter
-      basename={routerBasename}
-      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-    >
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <App />
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+// If you want to measure performance, pass a function to reportWebVitals (e.g. console.log)
 reportWebVitals();
