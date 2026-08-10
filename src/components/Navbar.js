@@ -5,17 +5,16 @@ import { IoClose } from 'react-icons/io5';
 import styles from './Navbar.module.css';
 
 const navItems = [
-  { label: 'About', to: '/#about' },
+  { label: 'About', to: '/', state: { scrollTo: 'about' } },
   { label: 'Projects', to: '/projects' },
 ];
 
 function isNavItemActive(to, location) {
   if (to === '/projects') {
-    return location.pathname === '/projects';
+    return location.pathname === '/projects' || location.pathname.startsWith('/projects/');
   }
-  if (to.startsWith('/#')) {
-    const id = to.slice(2);
-    return location.pathname === '/' && location.hash === `#${id}`;
+  if (to === '/') {
+    return location.pathname === '/';
   }
   return false;
 }
@@ -66,9 +65,14 @@ function Navbar() {
           aria-label="Primary"
         >
           <ul className={styles.navList}>
-            {navItems.map(({ label, to }) => (
+            {navItems.map(({ label, to, state }) => (
               <li key={to}>
-                <Link to={to} className={linkClass(to)} onClick={closeMenu}>
+                <Link
+                  to={to}
+                  state={state}
+                  className={linkClass(to)}
+                  onClick={closeMenu}
+                >
                   {label}
                 </Link>
               </li>

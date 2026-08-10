@@ -10,8 +10,8 @@ function HomePage() {
   const location = useLocation();
 
   useEffect(() => {
-    if (!location.hash) return;
-    const id = location.hash.replace('#', '');
+    const id = location.state?.scrollTo || (location.hash ? location.hash.replace('#', '') : null);
+    if (!id) return;
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });

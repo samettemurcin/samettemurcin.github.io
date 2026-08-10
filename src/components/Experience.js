@@ -33,18 +33,6 @@ const experiences = [
       'Documented model performance metrics, feature selection logic, and pipeline steps to ensure findings were reproducible and transferable across the team.',
     ],
   },
-  {
-    logoSrc: publicAsset('/images/Elmas Enterprise.jpeg'),
-    company: 'Elmas Enterprise',
-    title: 'Data Analyst Intern',
-    date: 'Sept 2022 - May 2023 | Boston, MA',
-    skills: ['SQL', 'Python', 'Power BI', 'K-means Clustering', 'ETL'],
-    bullets: [
-      'Engineered data pipelines using SQL and Python for route optimization, reducing delivery distances by 10%',
-      'Applied k-means clustering for targeted marketing campaigns, driving 5% sales increase and 8% improvement in customer loyalty',
-      'Coordinated with operations and sales teams to align data outputs with business priorities, translating technical findings into clear recommendations for non-technical stakeholders.',
-    ],
-  },
 ];
 
 function Experience() {

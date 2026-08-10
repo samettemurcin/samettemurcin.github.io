@@ -39,7 +39,7 @@ function Footer() {
           </div>
         </div>
         <nav className={styles.right} aria-label="Footer">
-          <Link to="/#about" className={styles.footerLink}>
+          <Link to="/" state={{ scrollTo: 'about' }} className={styles.footerLink}>
             About
           </Link>
           <Link to="/projects" className={styles.footerLink}>
