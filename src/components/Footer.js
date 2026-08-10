@@ -45,14 +45,6 @@ function Footer() {
           <Link to="/projects" className={styles.footerLink}>
             Projects
           </Link>
-          <a
-            href="/Samet_Temurcin_Resume.pdf"
-            className={styles.footerLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Resume
-          </a>
         </nav>
       </div>
     </footer>

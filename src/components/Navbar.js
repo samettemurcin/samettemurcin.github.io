@@ -77,17 +77,6 @@ function Navbar() {
                 </Link>
               </li>
             ))}
-            <li>
-              <a
-                href="/Samet_Temurcin_Resume.pdf"
-                className={styles.navLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={closeMenu}
-              >
-                Resume
-              </a>
-            </li>
           </ul>
         </nav>
       </div>
